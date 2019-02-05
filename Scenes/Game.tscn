@@ -1,0 +1,261 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Scripts/Ship.gd" type="Script" id=1]
+[ext_resource path="res://Assets/sprites/Ship-sheet.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/AlienGroup.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Alien.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -6.37411, -1.08463, -0.141571, -4.16245, 6.39876, -1.00769, 7.62988, 0.223419, 7.47598, 3.91678, -7.52829, 4.14761, -7.52829, -0.0843506 )
+
+[node name="Game" type="Node"]
+
+[node name="Ship" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 90, 286 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/mask = 0
+script/script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Ship"]
+
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="Collision" type="CollisionPolygon2D" parent="Ship"]
+
+build_mode = 0
+polygon = Vector2Array( -6.37411, -1.08463, -0.141571, -4.16245, 6.39876, -1.00769, 7.62988, 0.223419, 7.47598, 3.91678, -7.52829, 4.14761, -7.52829, -0.0843506 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Alien_Group" type="Node2D" parent="."]
+
+editor/display_folded = true
+script/script = ExtResource( 3 )
+
+[node name="aliens" type="Node2D" parent="Alien_Group"]
+
+editor/display_folded = true
+
+[node name="Alien" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 32, 60 )
+
+[node name="Alien1" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 48, 60 )
+
+[node name="Alien2" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 64, 60 )
+
+[node name="Alien3" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 80, 60 )
+
+[node name="Alien4" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 96, 60 )
+
+[node name="Alien5" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 112, 60 )
+
+[node name="Alien6" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 128, 60 )
+
+[node name="Alien7" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 144, 60 )
+
+[node name="Alien8" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 160, 60 )
+
+[node name="Alien9" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 32, 72 )
+tipo = 1
+
+[node name="Alien10" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 48, 72 )
+tipo = 1
+
+[node name="Alien11" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 64, 72 )
+tipo = 1
+
+[node name="Alien12" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 80, 72 )
+tipo = 1
+
+[node name="Alien13" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 96, 72 )
+tipo = 1
+
+[node name="Alien14" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 112, 72 )
+tipo = 1
+
+[node name="Alien15" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 128, 72 )
+tipo = 1
+
+[node name="Alien16" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 144, 72 )
+tipo = 1
+
+[node name="Alien17" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 160, 72 )
+tipo = 1
+
+[node name="Alien18" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 32, 84 )
+tipo = 2
+
+[node name="Alien19" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 48, 84 )
+tipo = 2
+
+[node name="Alien20" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 64, 84 )
+tipo = 2
+
+[node name="Alien21" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 80, 84 )
+tipo = 2
+
+[node name="Alien22" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 96, 84 )
+tipo = 2
+
+[node name="Alien23" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 112, 84 )
+tipo = 2
+
+[node name="Alien24" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 128, 84 )
+tipo = 2
+
+[node name="Alien25" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 144, 84 )
+tipo = 2
+
+[node name="Alien26" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 160, 84 )
+tipo = 2
+
+[node name="Alien27" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 32, 96 )
+tipo = 2
+
+[node name="Alien28" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 48, 96 )
+tipo = 2
+
+[node name="Alien29" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 64, 96 )
+tipo = 2
+
+[node name="Alien30" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 80, 96 )
+tipo = 2
+
+[node name="Alien31" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 96, 96 )
+tipo = 2
+
+[node name="Alien32" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 112, 96 )
+tipo = 2
+
+[node name="Alien33" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 128, 96 )
+tipo = 2
+
+[node name="Alien34" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 144, 96 )
+tipo = 2
+
+[node name="Alien35" parent="Alien_Group/aliens" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 160, 96 )
+tipo = 2
+
+[node name="TimerShoot" type="Timer" parent="Alien_Group"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="TimerMove" type="Timer" parent="Alien_Group"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Shields" type="Node" parent="."]
+
+editor/display_folded = true
+
+[node name="Shield" parent="Shields" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 39.8338, 262.368 )
+
+[node name="Shield1" parent="Shields" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 71.7171, 262.368 )
+
+[node name="Shield2" parent="Shields" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 103.846, 262.368 )
+
+[node name="Shield3" parent="Shields" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 135.976, 262.368 )
+
+[connection signal="timeout" from="Alien_Group/TimerShoot" to="Alien_Group" method="_on_TimerShoot_timeout"]
+
+[connection signal="timeout" from="Alien_Group/TimerMove" to="Alien_Group" method="_on_TimerMove_timeout"]
+
+
