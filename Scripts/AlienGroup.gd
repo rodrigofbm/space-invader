@@ -1,11 +1,17 @@
 extends Node2D
 
+const dir = Vector2(1, 0) * 6
+
 var alienShoot = preload("res://Scenes/AlienShoot.tscn")
 var alienXplosion = preload("res://Scenes/AlienXplosion.tscn")
-const dir = Vector2(1, 0) * 6
+var motherShip = preload("res://Scenes/MotherShip.tscn")
+
 var sentido = 1
 
+signal enemy_down(obj)
+
 func _ready():
+	instance_mother_ship()
 	get_node("TimerShoot").start()
 	for alien in get_node("aliens").get_children():
 		alien.connect("destroyed", self, "on_alien_destroyed")
@@ -44,6 +50,22 @@ func _on_TimerMove_timeout():
 		translate(dir * sentido)
 
 func on_alien_destroyed(alien):
+	emit_signal("enemy_down", alien)
 	var alien_exp = alienXplosion.instance()
+
 	get_parent().add_child(alien_exp)
 	alien_exp.set_global_pos(alien.get_global_pos())
+
+func _on_TimerMotherShip_timeout():
+	var mother_ship = motherShip.instance()
+	mother_ship.connect("destroyed", self, "on_alien_destroyed")
+	
+	get_parent().add_child(mother_ship)
+	#reinicia o timer
+	instance_mother_ship()
+
+func instance_mother_ship():
+	var timerMS = get_node("TimerMotherShip")
+	
+	timerMS.set_wait_time(rand_range(3, 10))
+	timerMS.start()
