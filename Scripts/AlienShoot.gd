@@ -4,6 +4,7 @@ const VEL = 150
 var dir = Vector2(0, 1)
 
 func _ready():
+	add_to_group("alien_shoot")
 	set_process(true)
 
 func _process(delta):

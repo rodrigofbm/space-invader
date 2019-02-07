@@ -19,7 +19,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 2
-collision/mask = 0
+collision/mask = 4
 script/script = ExtResource( 1 )
 tipo = 0
 
@@ -33,5 +33,7 @@ hframes = 2
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[connection signal="area_enter" from="." to="." method="_on_Alien_area_enter"]
 
 

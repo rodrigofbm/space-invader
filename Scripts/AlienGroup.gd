@@ -9,13 +9,19 @@ var motherShip = preload("res://Scenes/MotherShip.tscn")
 var sentido = 1
 
 signal enemy_down(obj)
+signal earth_down(obj)
 
 func _ready():
 	instance_mother_ship()
 	get_node("TimerShoot").start()
 	for alien in get_node("aliens").get_children():
+		alien.hide()
 		alien.connect("destroyed", self, "on_alien_destroyed")
-
+	
+	for alien in get_node("aliens").get_children():
+		get_node("TimerDrawAlien").start()
+		yield(get_node("TimerDrawAlien"), "timeout")
+		alien.show()
 
 func shoot():
 	var n_aliens = get_node("aliens").get_child_count()
@@ -41,6 +47,9 @@ func _on_TimerMove_timeout():
 		if alien.get_global_pos().x <= 7.5 and sentido < 0:
 			sentido = 1
 			border = true
+		
+		if alien.get_global_pos().y > 278:
+			emit_signal("earth_down", self)
 
 	if border:
 		translate(Vector2(0, 8))
@@ -69,3 +78,13 @@ func instance_mother_ship():
 	
 	timerMS.set_wait_time(rand_range(3, 10))
 	timerMS.start()
+
+func stop_all():
+	get_node("TimerShoot").stop()
+	get_node("TimerMove").stop()
+	get_node("TimerMotherShip").stop()
+
+func start_all():
+	get_node("TimerShoot").start()
+	get_node("TimerMove").start()
+	get_node("TimerMotherShip").start()

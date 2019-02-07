@@ -9,6 +9,10 @@ var right
 var dir = 0
 var laser
 var press_laser = false
+var is_alive = true
+
+signal destroyed(obj)
+signal respawn(obj)
 
 func _ready():
 	set_process(true)
@@ -40,6 +44,19 @@ func _process(delta):
 	
 	press_laser = laser
 	
-	
-	
-	
+func disable():
+	hide()
+	set_process(false)
+	is_alive = false
+
+func destroy(obj):
+	if is_alive:
+		is_alive = false
+		set_process(false)
+		emit_signal("destroyed")
+		get_node("Anim").play("xplosion")
+		yield(get_node("Anim"), "finished")
+		emit_signal("respawn")
+		set_process(true)
+		is_alive = true
+		get_node("Sprite").set_frame(0)

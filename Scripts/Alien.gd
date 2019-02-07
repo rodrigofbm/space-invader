@@ -47,3 +47,7 @@ func next_frame():
 		frame = 0
 	
 	get_node("Sprite").set_frame(frame)
+
+func _on_Alien_area_enter( area ):
+	if area.has_method("destroy"):
+		area.destroy(self)
