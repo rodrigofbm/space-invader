@@ -36,11 +36,12 @@ func _process(delta):
 		set_global_pos(Vector2(172.5, get_global_pos().y))
 	
 	#limitar tiros; not press_laser serve para n atirar pressionado o botao shoot
-	if(laser and not press_laser and get_tree().get_nodes_in_group("shoot_group").size() == 0):
+	if(laser and not press_laser and get_tree().get_nodes_in_group("shoot_group").size() < 1000):
 		var shoot = laserSCN.instance()
 
 		get_parent().add_child(shoot)
 		shoot.set_global_pos(get_global_pos())
+		get_node("SamplePlayer").play("ship_shoot")
 	
 	press_laser = laser
 	
@@ -51,6 +52,7 @@ func disable():
 
 func destroy(obj):
 	if is_alive:
+		get_node("SamplePlayer").play("ship_explosion")
 		is_alive = false
 		set_process(false)
 		emit_signal("destroyed")

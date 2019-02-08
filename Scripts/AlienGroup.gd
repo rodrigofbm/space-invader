@@ -7,9 +7,16 @@ var alienXplosion = preload("res://Scenes/AlienXplosion.tscn")
 var motherShip = preload("res://Scenes/MotherShip.tscn")
 
 var sentido = 1
+#shoot()
+var n_aliens = 0
+var alien
+var alien_shoot
+
+var note = 1;
 
 signal enemy_down(obj)
 signal earth_down(obj)
+signal victory(obj)
 
 func _ready():
 	instance_mother_ship()
@@ -24,11 +31,14 @@ func _ready():
 		alien.show()
 
 func shoot():
-	var n_aliens = get_node("aliens").get_child_count()
-	var alien = get_node("aliens").get_child(randi() % n_aliens)
-	var alien_shoot = alienShoot.instance()
-	get_parent().add_child(alien_shoot)
-	alien_shoot.set_global_pos(alien.get_global_pos())
+	get_node("SamplePlayer").play("alien_shot")
+	n_aliens = get_node("aliens").get_child_count()
+
+	if n_aliens > 0:
+		alien = get_node("aliens").get_child(randi() % n_aliens)
+		alien_shoot = alienShoot.instance()
+		get_parent().add_child(alien_shoot)
+		alien_shoot.set_global_pos(alien.get_global_pos())
 
 func _on_TimerShoot_timeout():
 	get_node("TimerShoot").set_wait_time(rand_range(0.5, 3))
@@ -37,7 +47,12 @@ func _on_TimerShoot_timeout():
 
 func _on_TimerMove_timeout():
 	var border = false
-	
+
+	get_node("SamplePlayer").play(str(note))
+	note += 1
+	if note > 4:
+		note = 1
+
 	for alien in get_node("aliens").get_children():
 		alien.next_frame()
 
@@ -59,11 +74,16 @@ func _on_TimerMove_timeout():
 		translate(dir * sentido)
 
 func on_alien_destroyed(alien):
+	get_node("SamplePlayer").play("alien_explosion")
 	emit_signal("enemy_down", alien)
 	var alien_exp = alienXplosion.instance()
 
 	get_parent().add_child(alien_exp)
 	alien_exp.set_global_pos(alien.get_global_pos())
+
+	if get_node("aliens").get_child_count() == 1:
+		stop_all()
+		emit_signal("victory")
 
 func _on_TimerMotherShip_timeout():
 	var mother_ship = motherShip.instance()
