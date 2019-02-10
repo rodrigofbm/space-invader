@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 ]
 }
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/ship_explosion = {
 "db": 0.0,
@@ -54,7 +54,7 @@ samples/ship_shoot = {
 "sample": ExtResource( 5 )
 }
 
-[sub_resource type="SampleLibrary" id=3]
+[sub_resource type="SampleLibrary" id=4]
 
 samples/1 = {
 "db": 0.0,
@@ -138,7 +138,7 @@ autoplay = ""
 [node name="SamplePlayer" type="SamplePlayer" parent="Ship"]
 
 config/polyphony = 3
-config/samples = SubResource( 4 )
+config/samples = SubResource( 3 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -399,7 +399,7 @@ autostart = false
 [node name="SamplePlayer" type="SamplePlayer" parent="Alien_Group"]
 
 config/polyphony = 10
-config/samples = SubResource( 3 )
+config/samples = SubResource( 4 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

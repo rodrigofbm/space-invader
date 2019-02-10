@@ -1,6 +1,6 @@
 extends Node
 
-const EXTRA_LIFE_POINT = [ 100, 200, 500 ]
+const EXTRA_LIFE_POINT = [ 1000, 2000, 3000 ]
 signal game_over(obj)
 signal victory(obj)
 
@@ -56,6 +56,8 @@ func on_alien_group_earth_down(obj):
 
 func game_over():
 	emit_signal("game_over")
+	get_node("Ship").queue_free()
+	get_node("Alien_Group").queue_free()
 	game_done()
 
 func on_alien_group_victory():

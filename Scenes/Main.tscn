@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/HighScore.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/shaders/shader_mirage_code.tres" type="Shader" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+shader/shader = ExtResource( 3 )
+shader/shading_mode = 0
+shader_param/frequency = 60.0
+shader_param/depth = 0.005
 
 [node name="Main" type="Node"]
 
 script/script = ExtResource( 1 )
+
+[node name="GameNode" type="Node" parent="."]
 
 [node name="btnNewGame" type="Button" parent="."]
 
@@ -13,14 +24,32 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 69.0
-margin/top = 160.0
+margin/top = 223.0
 margin/right = 111.0
-margin/bottom = 180.0
+margin/bottom = 243.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Jogar"
 flat = false
+
+[node name="HighScore" parent="." instance=ExtResource( 2 )]
+
+margin/top = 55.0
+margin/bottom = 221.0
+
+[node name="CustomShader" type="ColorFrame" parent="."]
+
+material/material = SubResource( 1 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 55.0
+margin/right = 180.0
+margin/bottom = 221.0
+color = Color( 1, 1, 1, 1 )
 
 [connection signal="pressed" from="btnNewGame" to="." method="_on_Button_pressed"]
 
